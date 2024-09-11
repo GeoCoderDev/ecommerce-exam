@@ -12,12 +12,12 @@ Este proyecto es una aplicación de gestión de pedidos diseñada para manejar i
 1. Clonar el repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/GeoCoderDev/ecommerce-exam.git
    ```
 2. Navegar al directorio del proyecto:
 
    ```bash
-   cd tu-repositorio
+   cd directorio-donde-se-clono-el-repositorio
    ```
 3. Levantar los contenedores con Docker:
 
