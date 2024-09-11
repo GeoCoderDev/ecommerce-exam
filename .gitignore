@@ -1,0 +1,31 @@
+# Ignorar node_modules en ambas carpetas
+/frontend/node_modules
+/backend/node_modules
+
+# Ignorar logs
+npm-debug.log
+yarn-error.log
+
+# Ignorar archivos de compilación
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Ignorar archivos generados por Angular
+/.angular/cache
+/.sass-cache
+/coverage
+
+# Ignorar archivos de configuración de IDEs
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+.vscode/
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
