@@ -1,0 +1,79 @@
+<div class="container mx-auto p-5 bg-white rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-4">Lista de Pedidos</h1>
+  <table class="min-w-full border-collapse border border-gray-300">
+    <thead>
+      <tr class="bg-blue-light text-white">
+        <th class="border border-gray-300 px-4 py-2">ID del Pedido</th>
+        <th class="border border-gray-300 px-4 py-2">Cliente</th>
+        <th class="border border-gray-300 px-4 py-2">Fecha de Creación</th>
+        <th class="border border-gray-300 px-4 py-2">Fecha de Entrega</th>
+        <th class="border border-gray-300 px-4 py-2">Estado</th>
+        <th class="border border-gray-300 px-4 py-2 text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (pedido of pedidosPaginados; track pedido.idPedido) {
+      <tr>
+        <td class="border text-center border-gray-300 px-4 py-2">
+          {{ pedido.idPedido }}
+        </td>
+        <td class="text-center border border-gray-300 px-4 py-2">
+          {{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}
+        </td>
+        <td class="text-center border border-gray-300 px-4 py-2">
+          {{ pedido.fechaCreacion | fechaFormato }}
+        </td>
+        <td class="text-center border border-gray-300 px-4 py-2">
+          {{ pedido.fechaEntrega | fechaFormato }}
+        </td>
+        <td class="border border-gray-300 px-4 py-2">
+          {{ pedido.fechaCreacion | estadoPedido : pedido.fechaEntrega }}
+        </td>
+        <td class="border border-gray-300 px-4 py-2 text-center">
+          <div class="flex justify-center space-x-2">
+            <button
+              class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
+            >
+              Ver/Editar
+            </button>
+            <button
+              class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
+            >
+              Eliminar
+            </button>
+          </div>
+        </td>
+      </tr>
+      }@empty {
+      <tr>
+        <td colspan="6" class="text-center py-4">No se encontraron pedidos</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <!-- Paginador -->
+  <div class="flex justify-between items-center mt-4">
+    <span class="text-sm text-gray-700">
+      Mostrando <strong>{{ (paginaActual - 1) * itemsPorPagina + 1 }}</strong> a
+      <strong>{{ getMinimo() }}</strong> de
+      <strong>{{ totalItems }}</strong> pedidos
+    </span>
+    <div class="flex space-x-2">
+      <button
+        (click)="cambiarPagina(paginaActual - 1)"
+        class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200"
+        [disabled]="paginaActual === 1"
+      >
+        Anterior
+      </button>
+      <button
+        (click)="cambiarPagina(paginaActual + 1)"
+        class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200"
+        [disabled]="paginaActual === totalPaginas"
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>
